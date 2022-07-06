@@ -36,6 +36,16 @@ final class ContactServiceIntegrationTest extends TestCase
 
     public function testCreationContact()
     {
+        $fichierDb='contacts.sqlite';
+        $bdd = new PDO('sqlite:'.$fichierDb);
+        $bdd->query('DELETE from contact');
+        $req = $bdd->prepare('INSERT INTO contact (nom, prenom)
+        VALUES(?, ?)');
+        $req->execute(array('arnaur', 'boris'));
+
+        $req = $bdd->query('SELECT * from contact WHERE nom = "arnaur"');
+        $res = $req->fetchAll();
+        $this->assertEquals( 1, count($res)); 
     }
 
     public function testSearchContact()
@@ -44,6 +54,14 @@ final class ContactServiceIntegrationTest extends TestCase
 
     public function testModifyContact()
     {
+        
+        $req = $bdd->query("UPDATE contacts SET nom = 'boss' ,
+        prenom = 'lion' WHERE nom = 'arnaud'");
+        $req->execute();
+
+        $req = $bdd->query('SELECT * from contacts WHERE nom = "boss"');
+        $res = $req->fetchAll();
+        $this->assertEquals( 1, count($res));
     }
 
     public function testDeleteContact()
