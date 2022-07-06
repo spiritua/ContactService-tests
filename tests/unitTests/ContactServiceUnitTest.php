@@ -50,7 +50,8 @@ final class ContactServiceUnitTest extends TestCase {
 
     }
 
-    public function testModifyContactWithInvalidId() {
+    public function testModifyContactWithInvalidId($id1, $id2) {
+        $this->assertEquals($id1, $id2, $message = 'id2 est inexistant');
     }
 
     public function testDeleteContactWithTextAsId() {
