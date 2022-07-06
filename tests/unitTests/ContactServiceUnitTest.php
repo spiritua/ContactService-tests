@@ -27,7 +27,10 @@ final class ContactServiceUnitTest extends TestCase {
         $this->contactService = new ContactService();
     }
 
-    public function testCreationContactWithoutAnyText() {
+    public function testCreationContactWithoutAnyText($nom, $prenom) {
+        while ($this->assertEmpty([$nom]) || $this->assertEmpty([$prenom])){
+            echo "erreur, une variable vide";
+        };
     }
 
     public function testCreationContactWithoutPrenom() {
