@@ -31,6 +31,15 @@ final class ContactServiceIntegrationTest extends TestCase
     // test de suppression de toute les données, nécessaire pour nettoyer la bdd de tests à la fin
     public function testDeleteAll()
     {
+        $fichierDb='contacts.sqlite';
+        $bdd = new PDO('sqlite:'.$fichierDb);
+        $req = $bdd->prepare('INSERT INTO contact (nom, prenom)
+        VALUES(?, ?)');
+        $req->execute(array('arnaur', 'boris'));
+
+        $req = $bdd->query('DELETE * from contact WHERE nom = "arnaur"');
+        $res = $req->fetchAll();
+        $this->assertEquals( 0, count($res)); 
     }
 
 
