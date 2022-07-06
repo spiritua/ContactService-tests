@@ -45,7 +45,9 @@ final class ContactServiceUnitTest extends TestCase {
         };
     }
 
-    public function testSearchContactWithNumber() {
+    public function testSearchContactWithNumber($id) {
+        $this->assertNull($id, $message = 'id inexistant');
+
     }
 
     public function testModifyContactWithInvalidId() {
