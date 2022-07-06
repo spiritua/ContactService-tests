@@ -33,10 +33,16 @@ final class ContactServiceUnitTest extends TestCase {
         };
     }
 
-    public function testCreationContactWithoutPrenom() {
+    public function testCreationContactWithoutPrenom($prenom) {
+        while ($this->assertEmpty([$prenom])){
+            echo "erreur, Prenom vide";
+        };
     }
 
-    public function testCreationContactWithoutNom() {
+    public function testCreationContactWithoutNom($nom) {
+        while ($this->assertEmpty([$nom])){
+            echo "erreur, nome vide";
+        };
     }
 
     public function testSearchContactWithNumber() {
